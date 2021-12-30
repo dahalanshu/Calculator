@@ -1,0 +1,102 @@
+<html>
+    <head><title>Calculator</title></head>
+    <body>
+        <table border="5">
+        <tr>
+            <td><input type="button" value="clear" onclick="clr()"/> </td>
+            <td colspan="3"><input type="text" id="text"/></td>
+            <!-- <td colspan = "value">table content...</td>
+            The value specifies the number of columns that the cell fills. The value must be an integer.  -->
+        </tr>
+        <tr>
+            <td><input type="button" value="+" onclick="display('+')"/> </td>
+            <td><input type="button" value="1" onclick="display('1')"/> </td>
+            <td><input type="button" value="2" onclick="display('2')"/> </td>
+            <td><input type="button" value="3" onclick="display('3')"/> </td>
+        </tr>
+
+        <tr>
+            <td><input type="button" value="-" onclick="display('-')"/> </td>
+            <td><input type="button" value="4" onclick="display('4')"/> </td>
+            <td><input type="button" value="5" onclick="display('5')"/> </td>
+            <td><input type="button" value="6" onclick="display('6')"/> </td>
+        </tr>
+
+        <tr>
+            <td><input type="button" value="*" onclick="display('*')"/> </td>
+            <td><input type="button" value="7" onclick="display('7')"/> </td>
+            <td><input type="button" value="8" onclick="display('8')"/> </td>
+            <td><input type="button" value="9" onclick="display('9')"/> </td>
+        </tr>
+
+        <tr>
+            <td><input type="button" value="/" onclick="display('/')"/> </td>
+            <td><input type="button" value="." onclick="display('.')"/> </td>
+            <td><input type="button" value="0" onclick="display('0')"/> </td>
+            <td><input type="button" value="=" onclick="evaluateExpression()"/> </td>
+        </tr>
+    </table>
+
+        <script>
+                var equalsPressed = false
+
+                function display(val) {
+                    var isOperator = val == '+' || val == '-' || val == '/' || val == '*'
+                    if (equalsPressed && !isOperator) {
+                        document.getElementById('text').value = ""
+                    }
+                    equalsPressed = false
+                    document.getElementById("text").value += val
+                }
+                
+                function evaluateExpression() {
+                    equalsPressed = true
+                    const expression = document.getElementById("text")
+                    expression.value = eval(expression.value)
+                }
+                    
+                
+                function clr(){
+                    document.getElementById("text").value = ""
+                }
+        </script>
+        
+        <style>
+
+            table {
+                position:absolute;
+                margin-left: 35em;
+                margin-right: 30em;
+                margin-top: 10em;
+                margin-bottom: 50em;
+                width: 20em;
+                height: 30em;
+            }
+
+            input[type="button"]{
+            
+                border-radius: 1em;
+                background-color: lightskyblue;
+                color: rgb(38, 20, 201);
+                background-color: white;
+                width: 100%;
+                height: 5em;
+            }
+            input[type="text"]{
+                border-radius: 1em;
+                text-align: right;
+                background-color: white;
+                color: black;
+                border-color: brown;
+                width: 100%;
+                height: 5em;
+                font-size: 1em;
+            }
+            input[type="button"]:hover{
+                background-color:lightcoral;
+            }
+
+
+        </style>
+    </body>
+</html>
